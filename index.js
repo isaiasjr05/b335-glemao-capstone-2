@@ -11,7 +11,7 @@ const productRoutes = require("./routes/product");
 // require("./passport");
 
 
-const port = 4000;
+const port = 4003;
 
 
 const cors = require("cors");
@@ -35,7 +35,7 @@ app.use(cors());
 // mongodb+srv://admin:admin@b335-glemao.od57ehx.mongodb.net/postmanCartHub
 // mongodb+srv://admin:admin@b335-celeridad.au92cmr.mongodb.net/FragsHubPH
 
-mongoose.connect("mongodb+srv://admin:admin@b335-celeridad.au92cmr.mongodb.net/FragsHubPH",
+mongoose.connect("mongodb+srv://admin:admin@b335-glemao.od57ehx.mongodb.net/postmanCartHub",
 	{
 		useNewUrlParser : true,//for parsing/reading connection string
 		useUnifiedTopology : true//assures that we uses the updated mongoDB servers
@@ -44,8 +44,12 @@ mongoose.connect("mongodb+srv://admin:admin@b335-celeridad.au92cmr.mongodb.net/F
 
 mongoose.connection.once('open', () => console.log ('Now connected to MongoDB Atlas'));
 
-app.use("/users", userRoutes);
-app.use("/products", productRoutes);
+app.get("/b3", (req, res) => {
+	res.send("Hello world")
+})
+
+app.use("/b3/users", userRoutes);
+app.use("/b3/products", productRoutes);
 
 
 app.listen(process.env.PORT || port, () => {console.log(`API is now online on port ${process.env.PORT || port}`)});
